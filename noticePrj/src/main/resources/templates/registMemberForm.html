@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<script type="text/javascript" th:src="@{/js/registMemberForm.js}"></script>
+
+</head>
+<body>
+	<th:block th:replace="~{/fragments/header.html :: headerFragment}"></th:block>
+	<form action="/member/registMember" method="post">
+		<input type="text" id="id" name="id" placeholder="아이디" th:oninput="checkAgain()">
+		<div id="idResult" style="color:red;"></div>
+		<input type="button" id="checkIdBtn" value="아이디중복체크" th:onclick="checkId()">
+		<input type="password" id="pw" name="pw" placeholder="비밀번호">
+		<input type="text" id="name" name="name" placeholder="이름">
+		<input type="tel" id="tel" name="tel" placeholder="전화번호 : 010-0000-0000">
+		<input type="email" id="email" name="email" placeholder="이메일">
+		<input type="submit" value="회원가입" th:onclick="return checkNull()">
+	</form>
+</body>
+</html>
