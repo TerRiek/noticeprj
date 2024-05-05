@@ -5,5 +5,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.example.noticePrj.dao.IMemberDao">
-
+	<select id="showMemberDto" resultType="com.example.noticePrj.dto.MemberDto">
+		SELECT * FROM membertbl WHERE id = #{id};
+	</select>
+	<select id="loginCheck">
+		SELECT COUNT(id) FROM membertbl WHERE id = #{id} AND pw = #{pw};
+ 	</select>
+	<insert id="registMemberDto">
+		INSERT INTO membertbl VALUES (NULL, #{dto.id}, #{dto.pw}, #{dto.name}, #{dto.tel}, #{dto.email});
+	</insert>
+	<update id="updateMemberDto">
+		UPDATE membertbl SET id = #{dto.id}, pw = #{dto.pw}, name = #{dto.name}, tel = #{dto.tel}, email = #{dto.email} WHERE mno = #{dto.mno};
+	</update>
+	<delete id="deleteMemberDto">
+		DELETE FROM membertbl WHERE id = #{id};
+	</delete>
+	
 </mapper>
