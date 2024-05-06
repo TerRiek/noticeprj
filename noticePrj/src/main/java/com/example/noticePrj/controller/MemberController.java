@@ -73,4 +73,13 @@ public class MemberController {
 	public void myPage() {
 	}
 	
+	@GetMapping("/logoutMember")
+	public void logoutMember(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		session.removeAttribute("memberDto");
+		out.print("<script>alert('로그아웃 되었습니다!');location.href='/';</script>");
+	}
+	
 }
