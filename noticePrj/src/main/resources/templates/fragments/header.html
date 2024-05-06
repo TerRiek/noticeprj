@@ -1,22 +1,28 @@
+
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" 
+<html xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 
 </head>
 <body style="margin: 0;">
-<header th:fragment="headerFragment">
-	<h1>
-		<a href="/">게시판 프로그램 v.1</a>
-	</h1>
-	<nav>
-		<ul style="display: flex;">
-			<li><a href="/member/registMemberForm">회원가입</a></li>
-			<li><a href="#">로그인</a></li>
-			<li><a href="#"></a></li>
-			<li><a href="#"></a></li>
-		</ul>
-	</nav>
-</header>
+	<header th:fragment="headerFragment">
+		<h1>
+			<a href="/">게시판 프로그램 v.1</a>
+		</h1>
+		<nav>
+			<ul style="display: flex;">
+				<th:block th:if="${session.memberDto == null}">
+					<li><a href="/member/registMemberForm">회원가입</a></li>
+					<li><a href="/member/loginMemberForm">로그인</a></li>
+				</th:block>
+				<th:block th:if="${session.memberDto != null}">
+				<li><a href="/member/myPage">[[${session.memberDto.name}]]([[${session.memberDto.id}]])님 환영합니다!</a></li>
+				<li><a href="/member/logoutMember">로그아웃</a></li>
+				</th:block>
+				<li><a href="#"></a></li>
+			</ul>
+		</nav>
+	</header>
 </body>
 </html>
